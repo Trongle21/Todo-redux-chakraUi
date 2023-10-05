@@ -23,14 +23,18 @@ const Filter = () => {
       left={14}
       zIndex={99}
     >
-      <Stack >
+      <Stack>
         <Stack>
           <Text fontWeight={700} fontSize={24} color={"#fff"}>
             Actions
           </Text>
           <Flex gap={2} color={"#fff"}>
-            <Button background={"#191919"}>All Completed</Button>
-            <Button background={"#191919"}>Clear completed</Button>
+            <Button background={"#191919"} color={"#fff"}>
+              All Completed
+            </Button>
+            <Button background={"#191919"} color={"#fff"}>
+              Clear completed
+            </Button>
           </Flex>
         </Stack>
         <Stack mt={4}>

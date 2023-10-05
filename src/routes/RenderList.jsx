@@ -23,7 +23,7 @@ const RenderList = () => {
             <Text color={"#fff"}>Công việc 1</Text>
           </Flex>
           <Button size={"xs"} backgroundColor={"#373737"}>
-            <BsTrash />
+            <BsTrash color="#fff" />
           </Button>
         </CardBody>
       </Card>
