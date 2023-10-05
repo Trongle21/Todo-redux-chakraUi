@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import {
   Container,
   Text,
@@ -8,8 +10,36 @@ import {
   Radio,
   Flex,
 } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
 
-const Filter = () => {
+/**
+ * @typedef FilterProps
+ *
+ * @property {func} onChangeColor
+ *
+ */
+
+/**
+ *
+ * @param {FilterProps} props
+ * @returns
+ */
+
+const Filter = ({ onChangeColor }) => {
+  const todos = useSelector((state) => state.todos);
+
+  const dispatch = useDispatch();
+
+  const todoNotCompleted = todos.filter((todo) => !todo.completed).length;
+
+  const handleCompletedAll = () => {
+    dispatch({ type: "todos/completedAll" });
+  };
+
+  const handleInCompletedAll = () => {
+    dispatch({ type: "todos/inCompletedAll" });
+  };
+
   return (
     <Container
       w={"fit-content"}
@@ -21,7 +51,7 @@ const Filter = () => {
       overflow={"hidden"}
       top={274}
       left={14}
-      zIndex={99}
+      zIndex={0}
     >
       <Stack>
         <Stack>
@@ -29,10 +59,18 @@ const Filter = () => {
             Actions
           </Text>
           <Flex gap={2} color={"#fff"}>
-            <Button background={"#191919"} color={"#fff"}>
+            <Button
+              background={"#191919"}
+              color={"#fff"}
+              onClick={handleCompletedAll}
+            >
               All Completed
             </Button>
-            <Button background={"#191919"} color={"#fff"}>
+            <Button
+              background={"#191919"}
+              color={"#fff"}
+              onClick={handleInCompletedAll}
+            >
               Clear completed
             </Button>
           </Flex>
@@ -43,22 +81,39 @@ const Filter = () => {
           </Text>
           <RadioGroup>
             <Stack direction={"column"} gap={1}>
-              <Radio value="red" colorScheme={"red"} color={"red"}>
+              <Radio
+                value="red"
+                colorScheme={"red"}
+                color={"red"}
+                onChange={() => onChangeColor("red")}
+              >
                 <Text color={"red"} fontWeight={600}>
                   Red
                 </Text>
               </Radio>
-              <Radio value="gray" colorScheme={"gray"}>
+              <Radio
+                value="gray"
+                colorScheme={"gray"}
+                onChange={() => onChangeColor("gray")}
+              >
                 <Text color={"gray"} fontWeight={600}>
                   Gray
                 </Text>
               </Radio>
-              <Radio value="Blue" colorScheme={"blue"}>
+              <Radio
+                value="Blue"
+                colorScheme={"blue"}
+                onChange={() => onChangeColor("blue")}
+              >
                 <Text color={"blue"} fontWeight={600}>
                   Blue
                 </Text>
               </Radio>
-              <Radio value="Purple" colorScheme={"purple"}>
+              <Radio
+                value="Purple"
+                colorScheme={"purple"}
+                onChange={() => onChangeColor("purple")}
+              >
                 <Text color={"purple"} fontWeight={600}>
                   Purple
                 </Text>
@@ -66,9 +121,18 @@ const Filter = () => {
             </Stack>
           </RadioGroup>
         </Stack>
+        <Stack>
+          <Text fontWeight={700} fontSize={24} color={"#fff"}>
+            Todo not completed: {todoNotCompleted}
+          </Text>
+        </Stack>
       </Stack>
     </Container>
   );
+};
+
+Filter.propTypes = {
+  onChangeColor: PropTypes.func,
 };
 
 export default Filter;
