@@ -40,18 +40,21 @@ const Header = ({ colorTodo }) => {
   };
 
   const handleAddTodoByEnter = (e) => {
-    setInputTodo("");
-    inputRef.current.focus();
+
     if (e.key === "Enter") {
       if (inputTodo.trim().length === 0) {
         return;
       }
       if (colorTodo) {
+        setInputTodo("");
+        inputRef.current.focus();
         dispatch({
           type: "todos/added",
           payload: { title: inputTodo, color: colorTodo },
         });
       } else {
+        setInputTodo("");
+        inputRef.current.focus();
         dispatch({
           type: "todos/added",
           payload: { title: inputTodo },
@@ -95,8 +98,9 @@ const Header = ({ colorTodo }) => {
           border={"1px solid #494949"}
           value={inputTodo}
           ref={inputRef}
-          onChange={(e) => setInputTodo(e.target.value)}
+          color={"#fff"}
           onKeyDown={handleAddTodoByEnter}
+          onChange={(e) => setInputTodo(e.target.value)}
         />
         <Button
           _hover={{ background: "#2E88B1" }}

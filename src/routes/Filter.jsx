@@ -61,6 +61,7 @@ const Filter = ({ onChangeColor }) => {
           <Flex gap={2} color={"#fff"}>
             <Button
               background={"#191919"}
+              _hover={{ background: "#484848" }}
               color={"#fff"}
               onClick={handleCompletedAll}
             >
@@ -68,6 +69,7 @@ const Filter = ({ onChangeColor }) => {
             </Button>
             <Button
               background={"#191919"}
+              _hover={{ background: "#484848" }}
               color={"#fff"}
               onClick={handleInCompletedAll}
             >

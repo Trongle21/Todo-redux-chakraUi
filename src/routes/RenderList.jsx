@@ -108,6 +108,7 @@ const RenderList = ({ stateTodo, colorTodo }) => {
                 <Button
                   size={"xs"}
                   backgroundColor={"#373737"}
+                  _hover={{ background: "#484848" }}
                   onClick={() => handleDeleteTodo(todo.id)}
                 >
                   <BsTrash color="#fff" />
