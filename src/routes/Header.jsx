@@ -1,6 +1,14 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
-import { Heading, Text, Stack, Input, Button, Flex } from "@chakra-ui/react";
+import {
+  Heading,
+  Text,
+  Stack,
+  Input,
+  Button,
+  Flex,
+  useToast,
+} from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 
 /**
@@ -19,32 +27,69 @@ import { useDispatch } from "react-redux";
 const Header = ({ colorTodo }) => {
   const [inputTodo, setInputTodo] = useState("");
 
+  const toast = useToast();
+
   const dispatch = useDispatch();
 
   const inputRef = useRef();
 
   const handleAddTodo = () => {
-    setInputTodo("");
-    inputRef.current.focus();
-    if (colorTodo) {
-      dispatch({
-        type: "todos/added",
-        payload: { title: inputTodo, color: colorTodo },
+    if (inputTodo.length === 0) {
+      toast({
+        title: "added false",
+        description: `Chưa thêm được công việc`,
+        status: "error",
+        position: "top-right",
+        duration: 2000,
+        isClosable: true,
       });
     } else {
-      dispatch({
-        type: "todos/added",
-        payload: { title: inputTodo },
+      toast({
+        title: "added success",
+        description: `Bạn đã thêm công việc ${inputTodo} thành công`,
+        status: "success",
+        position: "top-right",
+        duration: 2000,
+        isClosable: true,
       });
+
+      setInputTodo("");
+      inputRef.current.focus();
+      if (colorTodo) {
+        dispatch({
+          type: "todos/added",
+          payload: { title: inputTodo, color: colorTodo },
+        });
+      } else {
+        dispatch({
+          type: "todos/added",
+          payload: { title: inputTodo },
+        });
+      }
     }
   };
 
   const handleAddTodoByEnter = (e) => {
-
     if (e.key === "Enter") {
       if (inputTodo.trim().length === 0) {
+        toast({
+          title: "added false",
+          description: `Chưa thêm được công việc`,
+          status: "error",
+          position: "top-right",
+          duration: 2000,
+          isClosable: true,
+        });
         return;
       }
+      toast({
+        title: "added success",
+        description: `Bạn đã thêm công việc ${inputTodo} thành công`,
+        status: "success",
+        position: "top-right",
+        duration: 2000,
+        isClosable: true,
+      });
       if (colorTodo) {
         setInputTodo("");
         inputRef.current.focus();
@@ -117,7 +162,7 @@ const Header = ({ colorTodo }) => {
 };
 
 Header.propTypes = {
-  colorTodo: PropTypes.string ,
+  colorTodo: PropTypes.string,
 };
 
 export default Header;

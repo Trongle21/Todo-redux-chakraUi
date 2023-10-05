@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import {
   Container,
@@ -9,6 +9,14 @@ import {
   CardBody,
   Checkbox,
   Select,
+  useToast,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { BsTrash } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
@@ -29,6 +37,11 @@ import { useSelector, useDispatch } from "react-redux";
 
 const RenderList = ({ stateTodo, colorTodo }) => {
   const dispatch = useDispatch();
+
+  const toast = useToast();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
 
   const todos = useSelector((state) => {
     const filerStateTodo = state.todos.filter((todo) => {
@@ -57,6 +70,14 @@ const RenderList = ({ stateTodo, colorTodo }) => {
   });
 
   const handleChangeStateTodo = (id) => {
+    toast({
+      title: "Success",
+      description: `Bạn đã thay đổi status thành công`,
+      status: "success",
+      position: "top-right",
+      duration: 2000,
+      isClosable: true,
+    });
     dispatch({
       type: "todos/changeState",
       payload: { id: id },
@@ -64,10 +85,26 @@ const RenderList = ({ stateTodo, colorTodo }) => {
   };
 
   const handleChangeColor = (id, color) => {
+    toast({
+      title: "Success",
+      description: `Bạn đã thay đổi màu ${color} thành công`,
+      status: "success",
+      position: "top-right",
+      duration: 2000,
+      isClosable: true,
+    });
     dispatch({ type: "todos/changeColor", payload: { id: id, color: color } });
   };
 
-  const handleDeleteTodo = (id) => {
+  const handleDeleteTodo = (id, title) => {
+    toast({
+      title: "Success",
+      description: `Bạn đã xóa ${title} thành công`,
+      status: "success",
+      position: "top-right",
+      duration: 2000,
+      isClosable: true,
+    });
     dispatch({ type: "todos/deleteTodo", payload: { id: id } });
   };
 
@@ -109,10 +146,42 @@ const RenderList = ({ stateTodo, colorTodo }) => {
                   size={"xs"}
                   backgroundColor={"#373737"}
                   _hover={{ background: "#484848" }}
-                  onClick={() => handleDeleteTodo(todo.id)}
+                  onClick={onOpen}
                 >
                   <BsTrash color="#fff" />
                 </Button>
+                <AlertDialog
+                  isOpen={isOpen}
+                  leastDestructiveRef={cancelRef}
+                  onClose={onClose}
+                >
+                  <AlertDialogOverlay>
+                    <AlertDialogContent>
+                      <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                        Delete Todo
+                      </AlertDialogHeader>
+
+                      <AlertDialogBody>
+                        Bạn chắc chắn muốn xóa {todo.title}
+                      </AlertDialogBody>
+
+                      <AlertDialogFooter>
+                        <Button ref={cancelRef} onClick={onClose}>
+                          Cancel
+                        </Button>
+                        <Button
+                          colorScheme="red"
+                          onClick={() => {
+                            handleDeleteTodo(todo.id, todo.title), onClose();
+                          }}
+                          ml={3}
+                        >
+                          Delete
+                        </Button>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialogOverlay>
+                </AlertDialog>
               </Flex>
             </CardBody>
           </Card>

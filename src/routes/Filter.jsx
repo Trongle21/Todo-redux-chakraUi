@@ -9,6 +9,7 @@ import {
   RadioGroup,
   Radio,
   Flex,
+  useToast,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -30,13 +31,31 @@ const Filter = ({ onChangeColor }) => {
 
   const dispatch = useDispatch();
 
+  const toast = useToast();
+
   const todoNotCompleted = todos.filter((todo) => !todo.completed).length;
 
   const handleCompletedAll = () => {
+    toast({
+      title: "Success",
+      description: `Bạn đã completed all `,
+      status: "success",
+      position: "top-right",
+      duration: 2000,
+      isClosable: true,
+    });
     dispatch({ type: "todos/completedAll" });
   };
 
   const handleInCompletedAll = () => {
+    toast({
+      title: "Success",
+      description: `Bạn đã inCompleted all `,
+      status: "success",
+      position: "top-right",
+      duration: 2000,
+      isClosable: true,
+    });
     dispatch({ type: "todos/inCompletedAll" });
   };
 
@@ -87,7 +106,17 @@ const Filter = ({ onChangeColor }) => {
                 value="red"
                 colorScheme={"red"}
                 color={"red"}
-                onChange={() => onChangeColor("red")}
+                onChange={() => {
+                  onChangeColor("red"),
+                    toast({
+                      title: "Success",
+                      description: `Bạn đã lọc red thành công`,
+                      status: "success",
+                      position: "top-right",
+                      duration: 2000,
+                      isClosable: true,
+                    });
+                }}
               >
                 <Text color={"red"} fontWeight={600}>
                   Red
@@ -96,7 +125,17 @@ const Filter = ({ onChangeColor }) => {
               <Radio
                 value="gray"
                 colorScheme={"gray"}
-                onChange={() => onChangeColor("gray")}
+                onChange={() => {
+                  onChangeColor("gray"),
+                    toast({
+                      title: "Success",
+                      description: `Bạn đã lọc gray thành công`,
+                      status: "success",
+                      position: "top-right",
+                      duration: 2000,
+                      isClosable: true,
+                    });
+                }}
               >
                 <Text color={"gray"} fontWeight={600}>
                   Gray
@@ -105,7 +144,17 @@ const Filter = ({ onChangeColor }) => {
               <Radio
                 value="Blue"
                 colorScheme={"blue"}
-                onChange={() => onChangeColor("blue")}
+                onChange={() => {
+                  onChangeColor("blue"),
+                    toast({
+                      title: "Success",
+                      description: `Bạn đã lọc blue thành công`,
+                      status: "success",
+                      position: "top-right",
+                      duration: 2000,
+                      isClosable: true,
+                    });
+                }}
               >
                 <Text color={"blue"} fontWeight={600}>
                   Blue
@@ -114,7 +163,17 @@ const Filter = ({ onChangeColor }) => {
               <Radio
                 value="Purple"
                 colorScheme={"purple"}
-                onChange={() => onChangeColor("purple")}
+                onChange={() => {
+                  onChangeColor("purple"),
+                    toast({
+                      title: "Success",
+                      description: `Bạn đã lọc purple thành công`,
+                      status: "success",
+                      position: "top-right",
+                      duration: 2000,
+                      isClosable: true,
+                    });
+                }}
               >
                 <Text color={"purple"} fontWeight={600}>
                   Purple
