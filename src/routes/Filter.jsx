@@ -122,7 +122,7 @@ const Filter = ({ onChangeColor }) => {
           </RadioGroup>
         </Stack>
         <Stack>
-          <Text fontWeight={700} fontSize={24} color={"#fff"}>
+          <Text mt={2} fontWeight={700} fontSize={24} color={"#fff"}>
             Todo not completed: {todoNotCompleted}
           </Text>
         </Stack>
