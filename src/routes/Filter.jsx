@@ -36,27 +36,49 @@ const Filter = ({ onChangeColor }) => {
   const todoNotCompleted = todos.filter((todo) => !todo.completed).length;
 
   const handleCompletedAll = () => {
-    toast({
-      title: "Success",
-      description: `Bạn đã completed all `,
-      status: "success",
-      position: "top-right",
-      duration: 2000,
-      isClosable: true,
-    });
-    dispatch({ type: "todos/completedAll" });
+    if (todos.length === 0) {
+      toast({
+        title: "Error",
+        description: `Không có công việc nào cả `,
+        status: "error",
+        position: "top-right",
+        duration: 2000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Success",
+        description: `Bạn đã completed all `,
+        status: "success",
+        position: "top-right",
+        duration: 2000,
+        isClosable: true,
+      });
+      dispatch({ type: "todos/completedAll" });
+    }
   };
 
   const handleInCompletedAll = () => {
-    toast({
-      title: "Success",
-      description: `Bạn đã inCompleted all `,
-      status: "success",
-      position: "top-right",
-      duration: 2000,
-      isClosable: true,
-    });
-    dispatch({ type: "todos/inCompletedAll" });
+    if (todos.length === 0) {
+      toast({
+        title: "Error",
+        description: `Không có công việc nào cả `,
+        status: "error",
+        position: "top-right",
+        duration: 2000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Success",
+        description: `Bạn đã inCompleted all `,
+        status: "success",
+        position: "top-right",
+        duration: 2000,
+        isClosable: true,
+      });
+      dispatch({ type: "todos/inCompletedAll" });
+    }
   };
 
   return (

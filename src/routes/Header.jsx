@@ -9,7 +9,7 @@ import {
   Flex,
   useToast,
 } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 /**
  * @typedef HeaderProps
