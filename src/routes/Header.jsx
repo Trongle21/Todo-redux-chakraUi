@@ -31,6 +31,7 @@ const Header = () => {
           background={"#262626"}
           placeholder="Nhập công việc ..."
           w={650}
+          border={"1px solid #494949"}
         />
         <Button
           _hover={{ background: "#2E88B1" }}

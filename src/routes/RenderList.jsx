@@ -12,7 +12,7 @@ import { BsTrash } from "react-icons/bs";
 const RenderList = () => {
   return (
     <Container mt={4} height={400} overflowY={"auto"} maxW={"100%"} padding={0}>
-      <Card mb={2} borderRadius={8} overflow={"hidden"}>
+      <Card mb={2} borderRadius={8} overflow={"hidden"} border={"none"}>
         <CardBody
           display={"flex"}
           justifyContent={"space-between"}
@@ -22,7 +22,7 @@ const RenderList = () => {
             <Checkbox />
             <Text color={"#fff"}>Công việc 1</Text>
           </Flex>
-          <Button size={"xs"}>
+          <Button size={"xs"} backgroundColor={"#373737"}>
             <BsTrash />
           </Button>
         </CardBody>
