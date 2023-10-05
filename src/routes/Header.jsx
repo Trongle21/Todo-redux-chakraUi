@@ -36,6 +36,7 @@ const Header = () => {
           _hover={{ background: "#2E88B1" }}
           background="#1E6F9F"
           transition="background 0.3s ease"
+          color={"#fff"}
         >
           add
         </Button>

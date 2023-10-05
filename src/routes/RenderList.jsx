@@ -20,7 +20,7 @@ const RenderList = () => {
         >
           <Flex gap={2}>
             <Checkbox />
-            <Text>Công việc 1</Text>
+            <Text color={"#fff"}>Công việc 1</Text>
           </Flex>
           <Button size={"xs"}>
             <BsTrash />

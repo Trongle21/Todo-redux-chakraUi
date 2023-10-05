@@ -21,19 +21,20 @@ const Filter = () => {
       overflow={"hidden"}
       top={274}
       left={14}
+      zIndex={99}
     >
-      <Stack>
+      <Stack >
         <Stack>
-          <Text fontWeight={700} fontSize={24}>
+          <Text fontWeight={700} fontSize={24} color={"#fff"}>
             Actions
           </Text>
-          <Flex gap={2}>
+          <Flex gap={2} color={"#fff"}>
             <Button background={"#191919"}>All Completed</Button>
             <Button background={"#191919"}>Clear completed</Button>
           </Flex>
         </Stack>
         <Stack mt={4}>
-          <Text fontWeight={700} fontSize={24}>
+          <Text fontWeight={700} fontSize={24} color={"#fff"}>
             Filter by color
           </Text>
           <RadioGroup>
