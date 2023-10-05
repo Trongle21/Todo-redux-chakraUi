@@ -15,7 +15,7 @@ const initState = {
   ],
 };
 
-const todoReducer = (state = initState, action) => {
+const TodoReducer = (state = initState, action) => {
   switch (action.type) {
     case "todos/added": {
       console.log(action.payload.color);
@@ -106,4 +106,4 @@ const todoReducer = (state = initState, action) => {
   }
 };
 
-export default todoReducer;
+export default TodoReducer;
